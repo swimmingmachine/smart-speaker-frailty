@@ -1,0 +1,194 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "FrailtyToolkit",
+    "version": "2",
+    "intents": [
+      {
+        "name": "AgreeIntent",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Yes",
+          "yeah",
+          "yep",
+          "yea",
+          "that is right",
+          "yes i did"
+        ],
+        "slots": []
+      },
+      {
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "No problem. I will ask at an another time."
+            }
+          ]
+        },
+        "name": "FrailtyQuestionsStart",
+        "version": "8",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:526862092902:function:frailtyToolkit",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "frailty questions",
+          "frailty start",
+          "start frailty test",
+          "start frailty questionnaire",
+          "ask frailty questions",
+          "frailty",
+          "frail"
+        ],
+        "slots": [],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Hello, welcome to use the frailty toolkit! Would you like to answer a few questions about your health? Please say \"yes\" or \"no\"."
+            }
+          ],
+          "maxAttempts": 3
+        },
+        "dialogCodeHook": {
+          "uri": "arn:aws:lambda:us-east-1:526862092902:function:frailtyToolkit",
+          "messageVersion": "1.0"
+        }
+      },
+      {
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Great, that is nice to hear."
+            }
+          ]
+        },
+        "name": "FrailtyFirstQuestion",
+        "version": "5",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:526862092902:function:frailtyToolkit",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "frailty first question"
+        ],
+        "slots": [],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Question #1: Do you feel that everything you did was an effort? Please say \"yes\" or \"no\"."
+            }
+          ],
+          "maxAttempts": 3
+        },
+        "dialogCodeHook": {
+          "uri": "arn:aws:lambda:us-east-1:526862092902:function:frailtyToolkit",
+          "messageVersion": "1.0"
+        }
+      },
+      {
+        "name": "FrailtySecondQuestion",
+        "version": "2",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:526862092902:function:frailtyToolkit",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "frailty second question"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "frequency",
+            "slotTypeVersion": "1",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "How often in the last week did you feel this way? Please say \"always\", \"sometimes\" or \"rare\"."
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "frequency"
+          }
+        ],
+        "dialogCodeHook": {
+          "uri": "arn:aws:lambda:us-east-1:526862092902:function:frailtyToolkit",
+          "messageVersion": "1.0"
+        }
+      }
+    ],
+    "slotTypes": [
+      {
+        "description": "how often ",
+        "name": "frequency",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "always",
+            "synonyms": [
+              "most of the time"
+            ]
+          },
+          {
+            "value": "rare",
+            "synonyms": [
+              "none of the time, rarely"
+            ]
+          },
+          {
+            "value": "sometimes"
+          }
+        ],
+        "valueSelectionStrategy": "TOP_RESOLUTION"
+      }
+    ],
+    "voiceId": "Matthew",
+    "childDirected": false,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 300,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    },
+    "detectSentiment": true,
+    "nluIntentConfidenceThreshold": 0.8,
+    "enableModelImprovements": true
+  }
+}
