@@ -14,7 +14,7 @@ While the first question is a yes or no question, the second question expects us
  
 ![AWS lex conversation sample](https://user-images.githubusercontent.com/50496048/146663643-e91a0084-6e61-4343-bb5f-819ab57b13f1.png)
 
-The IBM Watson IoT platform was used to receive data from the smart speaker and connect with other cloud services on the cloud. The smart speaker also directly sent users’ audio responses to a cloud-based conversation AI (e.g., AWS Lex) besides sending text-based conversation response data to the IoT platform. The conversation AI had a customized chatbot built to process users’ input and return an audio response.
+The AWS Lex was used to build a chatbot to handle the user conversation. The IBM Watson IoT platform was used to receive user responses from the smart speaker.
 
 ## Deployment
 The smart speaker was deployed and tested in [HomeLab](https://kite-uhn.com/lab/homelab) at [KITE Research](https://kite-uhn.com/), Toronto Rehabilitation Institute, Toronto, Canada. It could be placed in a convenient location according to the older adults' lifestyles. For example, our [focus group study](https://doi.org/10.1186/s12877-021-02252-4) published in the top BMC Geriatrics journal found that some older adults preferred to interact with the speaker in the kitchen while preparing food. Others chose to put the speaker near the bed for a quick conversation before sleeping.
